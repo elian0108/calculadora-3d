@@ -1,0 +1,16 @@
+{
+  "name": "Calculadora 3D Pro",
+  "short_name": "Calculadora 3D",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#007bff",
+  "description": "Calculadora de custos profissional para impressão 3D",
+  "icons": [
+    {
+      "src": "assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

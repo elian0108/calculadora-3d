@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#007bff" rx="64" ry="64"/>
+  <path fill="#ffffff" d="M128 64h256v64H128zM128 224h256v192H128z"/>
+  <path fill="#ffffff" d="M384 192H128c-17.67 0-32 14.33-32 32v128h32v-64h256v64h32V224c0-17.67-14.33-32-32-32z"/>
+  <text x="50%" y="460" font-family="Arial, sans-serif" font-size="60" fill="white" text-anchor="middle">Calc 3D</text>
+</svg>

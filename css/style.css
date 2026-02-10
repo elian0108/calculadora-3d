@@ -1,0 +1,711 @@
+:root {
+    /* Light Theme (Default) */
+    --primary-color: #2563eb;
+    /* Modern Blue */
+    --primary-dark: #1d4ed8;
+    --background-color: #f3f4f6;
+    --sidebar-bg: #1e293b;
+    --sidebar-text: #f8fafc;
+    --card-bg: #ffffff;
+    --text-color: #1f2937;
+    --text-muted: #6b7280;
+    --border-color: #e5e7eb;
+    --success-color: #10b981;
+    --danger-color: #ef4444;
+    --warning-color: #f59e0b;
+
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+    --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    --border-radius: 12px;
+}
+
+[data-theme="dark"] {
+    --background-color: #0f172a;
+    --card-bg: #1e293b;
+    --text-color: #f1f5f9;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+
+    /* Preserve brand colors but adjust contrast if needed */
+    --primary-color: #3b82f6;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    height: 100vh;
+    overflow: hidden;
+    /* Prevent body scroll, handle in content */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Layout - Full Width */
+.app-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    /* Occupy full viewport */
+    background-color: var(--background-color);
+}
+
+/* Sidebar */
+.sidebar {
+    width: 260px;
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    flex-shrink: 0;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.logo {
+    margin-bottom: 30px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius);
+    text-align: center;
+}
+
+.logo h2 {
+    color: white;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin: 0;
+}
+
+.nav-links {
+    list-style: none;
+    flex-grow: 1;
+}
+
+.nav-links li {
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+    color: #94a3b8;
+}
+
+.nav-links li:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: white;
+}
+
+.nav-links li.active {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-icon {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-icon:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Main Content */
+.content {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+    background-color: var(--background-color);
+    position: relative;
+    max-width: 100%;
+    /* Ensure it doesn't overflow */
+}
+
+/* Screens */
+.screen {
+    display: none;
+    max-width: 1400px;
+    /* Wider content area */
+    margin: 0 auto;
+    width: 100%;
+    animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.screen.active {
+    display: block;
+}
+
+/* AdSense Container - Policy Safe */
+.ad-container {
+    width: 100%;
+    min-height: 100px;
+    background-color: var(--card-bg);
+    border: 1px dashed var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    border-radius: var(--border-radius);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    overflow: hidden;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+/* Typography & General */
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-color);
+    letter-spacing: -0.5px;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+h3 {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Buttons */
+.btn-primary,
+.btn-secondary,
+.btn-delete,
+.btn-edit {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: inherit;
+    transition: all 0.2s;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background-color: var(--card-bg);
+    /* Use card bg for secondary */
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--border-color);
+}
+
+.btn-delete {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    background-color: rgba(239, 68, 68, 0.1);
+    color: var(--danger-color);
+}
+
+.btn-delete:hover {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+/* Cards & Stats */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background: var(--card-bg);
+    padding: 24px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+}
+
+.stat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-left: 4px solid var(--primary-color);
+}
+
+.stat-card h3 {
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-card p {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--text-color);
+}
+
+/* Lists */
+.list-item {
+    background: var(--card-bg);
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.list-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.list-item small {
+    color: var(--text-muted);
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-color);
+    font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    /* Subtle border */
+    border-radius: 8px;
+    background-color: var(--card-bg);
+    /* Input needs contrast in dark mode? Usually card bg is fine if body is darker */
+    color: var(--text-color);
+    /* Ensure text is visible in dark mode */
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+/* Specific fix for inputs in dark mode if needed: ensure they dont look same as background */
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group select {
+    background-color: #0f172a;
+    /* Darker than card */
+    border-color: #334155;
+}
+
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    outline: none;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Calculator Layout */
+.calculator-layout {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    /* More space for form */
+    gap: 30px;
+    align-items: start;
+}
+
+.results-panel {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-lg);
+    /* Pop out more */
+    position: sticky;
+    top: 20px;
+}
+
+.chart-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.cost-row {
+    color: var(--text-muted);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.cost-row:last-of-type {
+    border-bottom: none;
+}
+
+.cost-row span:last-child {
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.cost-row.total,
+.cost-row.price {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    border: none;
+    margin-top: 15px;
+}
+
+.cost-row.price span:last-child {
+    color: var(--success-color);
+    font-size: 1.5rem;
+}
+
+/* Grid Lists (Printers/Materials) */
+.grid-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.printer-card,
+.material-card {
+    background: var(--card-bg);
+    padding: 24px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.printer-card:hover,
+.material-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-color);
+}
+
+.printer-card h4,
+.material-card h4 {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+.printer-card p,
+.material-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 5px;
+}
+
+
+/* Modal */
+.modal {
+    display: flex;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+    transition: opacity 0.3s ease;
+}
+
+.modal.hidden {
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+}
+
+
+/* Educational Section */
+.educational-section {
+    margin-top: 40px;
+}
+
+.divider {
+    border: 0;
+    border-top: 1px solid var(--border-color);
+    margin: 30px 0;
+}
+
+.guide-card {
+    background: var(--card-bg);
+    padding: 24px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-sm);
+}
+
+.guide-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.guide-card ul {
+    margin-left: 20px;
+    margin-top: 10px;
+    color: var(--text-muted);
+}
+
+.guide-card li {
+    margin-bottom: 8px;
+}
+
+/* FAQ Section */
+.faq-section {
+    margin-top: 40px;
+}
+
+.faq-section details {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.faq-section summary {
+    padding: 15px;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--text-color);
+    background-color: rgba(0, 0, 0, 0.02);
+    list-style: none;
+    /* Hide default triangle */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-section summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-section summary::after {
+    content: '+';
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.faq-section details[open] summary::after {
+    content: '-';
+}
+
+.faq-section p {
+    padding: 15px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-color);
+    margin: 0;
+}
+
+/* Guide Screen Content */
+.guide-content article {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+}
+
+.guide-content p {
+    margin-bottom: 1.5rem;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+}
+
+.guide-content ol {
+    margin-left: 20px;
+    color: var(--text-color);
+}
+
+.guide-content li {
+    margin-bottom: 10px;
+    font-size: 1.05rem;
+}
+
+/* App Footer */
+.app-footer {
+    margin-top: 60px;
+    padding: 40px 0;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.footer-links {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
+}
+
+.app-footer p {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .calculator-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .results-panel {
+        position: static;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .app-container {
+        flex-direction: column;
+        overflow-y: auto;
+    }
+
+    /* Let body scroll on mobile */
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+        padding: 15px;
+        overflow-x: auto;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .logo,
+    .sidebar-footer {
+        display: none;
+    }
+
+    /* Simplify mobile nav */
+    .nav-links {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-start;
+    }
+
+    .nav-links li {
+        margin: 0;
+        padding: 10px;
+        flex-shrink: 0;
+    }
+
+    .nav-links li span:last-child {
+        display: none;
+    }
+
+    /* Hide text, keep icon */
+    .content {
+        padding: 15px;
+    }
+
+    .row {
+        grid-template-columns: 1fr;
+    }
+
+    /* Re-add footer/darkmode toggle somewhere accessible on mobile? 
+       For now, user requirement was desktop responsiveness mostly. */
+}

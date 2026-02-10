@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora 3D</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#007bff">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://pagead2.googlesyndication.com https://tpc.googlesyndication.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://pagead2.googlesyndication.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com 'self';">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <h2>Calculadora 3D</h2>
+            </div>
+            <ul class="nav-links">
+                <li class="active" data-target="dashboard">
+                    <span>🏠</span> Dashboard
+                </li>
+                <li data-target="calculadora">
+                    <span>🖩</span> Calculadora
+                </li>
+                <li data-target="impressoras">
+                    <span>🖨️</span> Impressoras
+                </li>
+                <li data-target="materiais">
+                    <span>🧵</span> Materiais
+                </li>
+                <li data-target="configuracoes">
+                    <span>⚙️</span> Configurações
+                </li>
+                <li data-target="guia">
+                    <span>📚</span> Guia
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <button id="theme-toggle" class="btn-icon" aria-label="Alternar Tema">
+                    🌙 Modo Escuro
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="screen active">
+                <header>
+                    <h1>Dashboard</h1>
+                    <button class="btn-primary" id="btn-new-print-shortcut">+ Nova Impressão</button>
+                </header>
+                <div class="stats-grid">
+                    <div class="card stat-card">
+                        <h3>Projetos</h3>
+                        <p id="total-projects">0</p>
+                    </div>
+                    <div class="card stat-card">
+                        <h3>Custo Médio</h3>
+                        <p id="avg-cost">R$ 0,00</p>
+                    </div>
+                </div>
+                <div class="ad-container">
+                    <!-- AdSense Slot: Dashboard Top -->
+                    <p>Publicidade</p>
+                </div>
+                <div class="recent-projects">
+                    <h2>Recentes</h2>
+                    <ul id="recent-list" class="list-group">
+                        <!-- Items injected by JS -->
+                        <li class="empty-state">Nenhum projeto salvo.</li>
+                    </ul>
+                </div>
+
+                <!-- Educational Content Section -->
+                <div class="educational-section">
+                    <hr class="divider">
+                    <h2>Entenda seus Custos</h2>
+
+                    <article class="guide-card">
+                        <h3>💰 Por que cobrar mais do que o custo do filamento?</h3>
+                        <p>Muitos iniciantes cometem o erro de cobrar apenas o valor do material gasto (ex: R$ 0,10/g).
+                            Porém, isso ignora custos invisíveis cruciais:</p>
+                        <ul>
+                            <li><strong>Energia Elétrica:</strong> Impressoras 3D ficam ligadas por horas ou dias. O
+                                consumo deve entrar na conta.</li>
+                            <li><strong>Depreciação:</strong> Sua impressora tem uma vida útil. Peças como bicos,
+                                correias e a própria placa mãe sofrem desgaste. Você precisa cobrar uma fração do valor
+                                da máquina a cada hora de uso para poder repô-la no futuro.</li>
+                            <li><strong>Falhas:</strong> Nem toda impressão dá certo. Uma taxa de falha (ex: 10% a 20%)
+                                deve ser embutida para cobrir impressões perdidas.</li>
+                            <li><strong>Mão de Obra:</strong> Seu tempo fatiando o modelo, preparando a mesa, trocando
+                                filamento e dando acabamento vale dinheiro.</li>
+                        </ul>
+                    </article>
+
+                    <article class="guide-card">
+                        <h3>⚡ Como calcular a energia?</h3>
+                        <p>Para um cálculo exato, use um wattímetro. Porém, uma estimativa segura é:</p>
+                        <p><em>Potência Média (kW) x Horas de Impressão x Custo do kWh</em></p>
+                        <p>Nossa calculadora já faz isso automaticamente baseado na potência informada no cadastro da
+                            impressora.</p>
+                    </article>
+
+                    <article class="guide-card">
+                        <h3>📉 O que é Depreciação?</h3>
+                        <p>Depreciação é a perda de valor do seu equipamento ao longo do tempo. Se sua impressora custou
+                            R$ 2.000,00 e dura cerca de 2.000 horas imprimindo, o custo de "aluguel" da máquina é de R$
+                            1,00 por hora. Adicionar uma taxa de manutenção garante que você tenha caixa para reparos.
+                        </p>
+                    </article>
+                </div>
+
+                <div class="faq-section">
+                    <h2>Perguntas Frequentes (FAQ)</h2>
+                    <details>
+                        <summary>Como saber o custo do kWh na minha cidade?</summary>
+                        <p>Verifique sua conta de luz. Geralmente o valor gira em torno de R$ 0,80 a R$ 1,20 por kWh no
+                            Brasil. O valor padrão da calculadora é uma média nacional.</p>
+                    </details>
+                    <details>
+                        <summary>Qual taxa de falha devo usar?</summary>
+                        <p>Para impressoras bem calibradas, 5% a 10% é razoável. Para impressões complexas ou
+                            arriscadas, considere 20% ou mais.</p>
+                    </details>
+                    <details>
+                        <summary>Como definir minha mão de obra?</summary>
+                        <p>Pense quanto você gostaria de ganhar por hora de trabalho focado. Se você gasta 30 minutos
+                            preparando um arquivo, esse tempo deve ser cobrado proporcionalmente.</p>
+                    </details>
+                </div>
+            </section>
+
+            <!-- Calculator Section -->
+            <section id="calculadora" class="screen">
+                <header>
+                    <h1>Calculadora de Custos</h1>
+                </header>
+                <div class="calculator-layout">
+                    <form id="calc-form">
+                        <div class="form-group">
+                            <label>Nome do Projeto</label>
+                            <input type="text" id="project-name" required placeholder="Ex: Benchy">
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <label>Impressora</label>
+                                <select id="calc-printer" required>
+                                    <option value="">Selecione...</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Material</label>
+                                <select id="calc-material" required>
+                                    <option value="">Selecione...</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <label>Peso (g)</label>
+                                <input type="number" id="calc-weight" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Tempo de Impressão</label>
+                                <div class="time-inputs">
+                                    <input type="number" id="calc-time-d" placeholder="D" min="0"
+                                        title="Dias de impressão">
+                                    <input type="number" id="calc-time-h" placeholder="H" min="0"
+                                        title="Horas de impressão">
+                                    <input type="number" id="calc-time-m" placeholder="M" min="0"
+                                        title="Minutos de impressão">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <label>Mão de Obra (h) <span
+                                        style="font-size:0.8em; color:var(--text-muted)">?</span></label>
+                                <input type="number" id="calc-labor-time" step="0.1" value="0"
+                                    title="Tempo gasto preparando/fatiando o arquivo e finalizando a peça">
+                            </div>
+                            <div class="form-group">
+                                <label>Taxa de Falha (%) <span
+                                        style="font-size:0.8em; color:var(--text-muted)">?</span></label>
+                                <input type="number" id="calc-fail-rate" step="1" value="0"
+                                    title="Margem de segurança para cobrir impressões que derem errado">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Custos Extras / Consumíveis (R$)</label>
+                            <input type="number" id="calc-extras" step="0.01" value="0.00"
+                                placeholder="Ex: Cola, Lixa, Tinta">
+                        </div>
+
+                        <button type="button" id="btn-calculate" class="btn-primary">Calcular</button>
+                    </form>
+
+                    <div class="results-panel">
+                        <div class="chart-container">
+                            <canvas id="costChart"></canvas>
+                        </div>
+                        <div class="cost-breakdown">
+                            <div class="cost-row">
+                                <span>Material</span>
+                                <span id="res-material">R$ 0,00</span>
+                            </div>
+                            <div class="cost-row">
+                                <span>Energia</span>
+                                <span id="res-energy">R$ 0,00</span>
+                            </div>
+                            <div class="cost-row">
+                                <span>Depreciação</span>
+                                <span id="res-depreciation">R$ 0,00</span>
+                            </div>
+                            <div class="cost-row">
+                                <span>Mão de Obra</span>
+                                <span id="res-labor">R$ 0,00</span>
+                            </div>
+                            <div class="cost-row">
+                                <span>Extras</span>
+                                <span id="res-extras">R$ 0,00</span>
+                            </div>
+                            <hr>
+                            <div class="cost-row total">
+                                <span>Custo Total</span>
+                                <span id="res-total">R$ 0,00</span>
+                            </div>
+                            <div class="cost-row price">
+                                <span>Preço Sugerido</span>
+                                <span id="res-price">R$ 0,00</span>
+                            </div>
+                        </div>
+                        <button id="btn-save-project" class="btn-secondary" disabled>Salvar Projeto</button>
+                        <div class="ad-container" style="margin-top: 20px;">
+                            <!-- AdSense Slot: Calculator Results -->
+                            <p>Publicidade</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Printers Section -->
+            <section id="impressoras" class="screen">
+                <header>
+                    <h1>Impressoras</h1>
+                    <button class="btn-primary" id="btn-add-printer">+ Adicionar</button>
+                </header>
+                <div id="printers-list" class="grid-list">
+                    <!-- Printers injected by JS -->
+                </div>
+            </section>
+
+            <!-- Materials Section -->
+            <section id="materiais" class="screen">
+                <header>
+                    <h1>Materiais</h1>
+                    <button class="btn-primary" id="btn-add-material">+ Adicionar</button>
+                </header>
+                <div id="materials-list" class="grid-list">
+                    <!-- Materials injected by JS -->
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="configuracoes" class="screen">
+                <header>
+                    <h1>Configurações</h1>
+                </header>
+                <form id="settings-form">
+                    <div class="form-group">
+                        <label>Custo Energia (R$/kWh)</label>
+                        <input type="number" id="conf-kwh" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label>Custo Hora Mão de Obra (R$)</label>
+                        <input type="number" id="conf-labor-cost" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label>Markup Padrão (%)</label>
+                        <input type="number" id="conf-markup" step="1">
+                    </div>
+                    <button type="submit" class="btn-primary">Salvar Configurações</button>
+                </form>
+
+                <hr style="margin: 30px 0; border: 0; border-top: 1px solid var(--border-color);">
+
+                <h2>Dados</h2>
+                <div class="row">
+                    <button id="btn-export" class="btn-secondary">📤 Exportar Backup (JSON)</button>
+                    <button id="btn-import-trigger" class="btn-secondary">📥 Restaurar Backup</button>
+                    <input type="file" id="file-import" accept=".json" style="display: none;">
+                </div>
+            </section>
+
+            <!-- Guide Section (New) -->
+            <section id="guia" class="screen">
+                <header>
+                    <h1>Guia de Precificação</h1>
+                </header>
+                <div class="guide-content">
+                    <article>
+                        <h2>Introdução à Precificação na Impressão 3D</h2>
+                        <p>A precificação correta é a chave para transformar um hobby em um negócio sustentável. Esta
+                            ferramenta ajuda você a visualizar todos os componentes do custo.</p>
+                        <p>Navegue pelo Dashboard para ver dicas rápidas ou use a calculadora para simular cenários
+                            reais.</p>
+                        <h3>Passo a Passo:</h3>
+                        <ol>
+                            <li>Cadastre suas <strong>Impressoras</strong> informando consumo e valor.</li>
+                            <li>Cadastre seus <strong>Materiais</strong> (filamentos ou resinas).</li>
+                            <li>Vá em <strong>Configurações</strong> e ajuste o custo de energia e sua mão de obra.</li>
+                            <li>Use a <strong>Calculadora</strong> para criar orçamentos completos.</li>
+                        </ol>
+                    </article>
+                </div>
+            </section>
+
+            <footer class="app-footer">
+                <div class="footer-links">
+                    <a href="about.html">Sobre Nós</a>
+                    <a href="privacy.html">Política de Privacidade</a>
+                    <a href="terms.html">Termos de Uso</a>
+                    <a href="contact.html">Contato</a>
+                </div>
+                <p>&copy; 2024 Calculadora 3D. Versão 1.1.0</p>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="modal-printer" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Nova Impressora</h2>
+            <form id="form-printer">
+                <input type="hidden" id="printer-id">
+                <div class="form-group">
+                    <label>Nome</label>
+                    <input type="text" id="printer-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Preço de Compra (R$)</label>
+                    <input type="number" id="printer-price" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label>Consumo (kW)</label>
+                    <input type="number" id="printer-consumption" step="0.001" required placeholder="Ex: 0.350">
+                </div>
+                <!-- Depreciação simplificada: Preço / Vida Útil -->
+                <div class="form-group">
+                    <label>Vida Útil estimada (Horas)</label>
+                    <input type="number" id="printer-lifespan" value="2000" required>
+                </div>
+                <div class="form-group">
+                    <label>Custo Manutenção (%)</label>
+                    <input type="number" id="printer-maintenance" value="10" placeholder="% sobre o valor">
+                </div>
+                <button type="submit" class="btn-primary">Salvar</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="modal-material" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Novo Material</h2>
+            <form id="form-material">
+                <input type="hidden" id="material-id">
+                <div class="form-group">
+                    <label>Nome / Marca</label>
+                    <input type="text" id="material-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Tipo</label>
+                    <select id="material-type">
+                        <option value="PLA">PLA</option>
+                        <option value="ABS">ABS</option>
+                        <option value="PETG">PETG</option>
+                        <option value="TPU">TPU</option>
+                        <option value="Resina">Resina</option>
+                        <option value="Outro">Outro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Preço do Rolo (R$)</label>
+                    <input type="number" id="material-price" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label>Peso do Rolo (g)</label>
+                    <input type="number" id="material-weight" value="1000" required>
+                </div>
+                <button type="submit" class="btn-primary">Salvar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/calculator.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js')
+                .then(reg => console.log('SW registered!', reg))
+                .catch(err => console.log('SW failed', err));
+        }
+    </script>
+</body>
+
+</html>

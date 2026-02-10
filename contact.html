@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - Calculadora 3D</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .page-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: var(--text-muted);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .contact-card {
+            background-color: var(--bg-color);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-method {
+            margin-bottom: 15px;
+        }
+
+        .contact-method strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text-color);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-container">
+        <a href="/" class="back-link">← Voltar para a Calculadora</a>
+
+        <h1>Fale Conosco</h1>
+        <p>Tem alguma dúvida, sugestão ou encontrou algum problema na nossa calculadora? Ficaremos felizes em ouvir
+            você!</p>
+
+        <div class="contact-card">
+            <div class="contact-method">
+                <strong>Email:</strong>
+                <a href="mailto:contato.calculadora3d@gmail.com">contato.calculadora3d@gmail.com</a>
+            </div>
+
+            <div class="contact-method">
+                <strong>GitHub:</strong>
+                <a href="https://github.com/elian0108" target="_blank">Perfil no GitHub</a>
+            </div>
+
+            <p style="margin-top: 20px; font-size: 0.9em;">
+                Tentamos responder a todas as mensagens em até 48 horas úteis.
+            </p>
+        </div>
+
+        <hr style="margin: 40px 0; border: 0; border-top: 1px solid var(--border-color);">
+        <p style="font-size: 0.9em; text-align: center;">&copy; 2024 Calculadora 3D. Todos os direitos reservados.</p>
+    </div>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
