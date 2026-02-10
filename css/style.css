@@ -697,30 +697,48 @@ h3 {
     }
 
     .nav-links li {
+        flex: 1;
+        display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         margin: 0;
-        padding: 6px 4px;
-        flex: 1;
-        border-radius: 8px;
-        gap: 4px;
-        /* Space between icon and text */
-        text-align: center;
+        padding: 6px 2px;
+        background: transparent !important;
+        /* Override global active bg */
+        box-shadow: none !important;
+        border-radius: 0;
+        color: var(--text-muted);
+        transition: all 0.2s ease;
+    }
+
+    .nav-links li.active {
+        background-color: transparent !important;
+        color: var(--primary-color) !important;
+        box-shadow: none !important;
     }
 
     .nav-links li span:first-child {
-        font-size: 1.4rem;
-        /* Icon size */
+        font-size: 1.5rem;
         margin-right: 0;
+        margin-bottom: 2px;
+        transition: transform 0.2s;
+    }
+
+    .nav-links li.active span:first-child {
+        transform: translateY(-2px);
     }
 
     .nav-links li span:last-child {
-        display: block !important;
-        /* Force show text on bottom nav */
+        display: none !important;
         font-size: 0.7rem;
-        font-weight: 500;
+        font-weight: 600;
         line-height: 1;
+    }
+
+    .nav-links li.active span:last-child {
+        display: block !important;
+        animation: fadeIn 0.3s ease;
     }
 
     /* Main Content Adjustments */
