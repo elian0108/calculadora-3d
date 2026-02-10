@@ -723,6 +723,7 @@ h3 {
         /* Larger icons since no text */
         margin: 0;
         transition: transform 0.2s;
+        display: block;
     }
 
     .nav-links li.active span:first-child {
@@ -731,9 +732,10 @@ h3 {
         color: var(--primary-color);
     }
 
+    /* Target the text span (which is now the last-child) */
     .nav-links li span:last-child {
         display: none !important;
-        /* Always hide text */
+        /* Hide text on mobile */
     }
 
     .nav-links li.active span:last-child {
@@ -741,29 +743,37 @@ h3 {
         /* Ensure hidden on active too */
     }
 
-    /* Main Content Adjustments */
-    .content {
-        padding: 15px;
-        padding-bottom: 90px;
-        /* Add padding to bottom so content isn't covered by nav */
-    }
+    /* Always hide text */
+}
 
-    .row {
-        grid-template-columns: 1fr;
-    }
+.nav-links li.active span:last-child {
+    display: none !important;
+    /* Ensure hidden on active too */
+}
 
-    /* Mobile Header Adjustments */
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
+/* Main Content Adjustments */
+.content {
+    padding: 15px;
+    padding-bottom: 90px;
+    /* Add padding to bottom so content isn't covered by nav */
+}
 
-    header h1 {
-        font-size: 1.75rem;
-    }
+.row {
+    grid-template-columns: 1fr;
+}
 
-    header .btn-primary {
-        width: 100%;
-    }
+/* Mobile Header Adjustments */
+header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+header h1 {
+    font-size: 1.75rem;
+}
+
+header .btn-primary {
+    width: 100%;
+}
 }
