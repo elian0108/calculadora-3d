@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200, height=630, initial-scale=1.0">
+    <title>OG Preview</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 1200px;
+            height: 630px;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', sans-serif;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .decorative-circle {
+            position: absolute;
+            background: rgba(37, 99, 235, 0.1);
+            border-radius: 50%;
+        }
+
+        .circle-1 {
+            width: 600px;
+            height: 600px;
+            top: -100px;
+            right: -100px;
+        }
+
+        .circle-2 {
+            width: 400px;
+            height: 400px;
+            bottom: -50px;
+            left: -50px;
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        .content {
+            text-align: center;
+            z-index: 10;
+        }
+
+        .icon-container {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            font-size: 60px;
+        }
+
+        h1 {
+            font-size: 80px;
+            font-weight: 800;
+            margin: 0;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            background: linear-gradient(to right, #60a5fa, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p {
+            font-size: 32px;
+            color: #94a3b8;
+            margin-top: 20px;
+            font-weight: 400;
+        }
+
+        .badges {
+            margin-top: 40px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 24px;
+            border-radius: 100px;
+            font-size: 20px;
+            color: #e2e8f0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="decorative-circle circle-1"></div>
+    <div class="decorative-circle circle-2"></div>
+
+    <div class="content">
+        <div class="icon-container">
+            🥡
+        </div>
+        <h1>Calculadora 3D</h1>
+        <p>Precificação inteligente para suas impressões</p>
+
+        <div class="badges">
+            <div class="badge">Material</div>
+            <div class="badge">Energia</div>
+            <div class="badge">Lucro</div>
+        </div>
+    </div>
+</body>
+
+</html>

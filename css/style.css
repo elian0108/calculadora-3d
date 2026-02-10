@@ -665,14 +665,21 @@ h3 {
         overflow-y: auto;
     }
 
-    /* Let body scroll on mobile */
+    /* Fixed Bottom Navigation */
     .sidebar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
         width: 100%;
+        height: auto;
+        padding: 8px 10px;
+        background-color: var(--sidebar-bg);
+        /* Use theme variable */
+        z-index: 1000;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        justify-content: center;
+        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.15);
         flex-direction: row;
-        padding: 15px;
-        overflow-x: auto;
-        align-items: center;
-        justify-content: space-between;
     }
 
     .logo,
@@ -680,32 +687,65 @@ h3 {
         display: none;
     }
 
-    /* Simplify mobile nav */
     .nav-links {
         display: flex;
-        gap: 10px;
-        justify-content: flex-start;
+        width: 100%;
+        justify-content: space-around;
+        padding: 0;
+        margin: 0;
+        gap: 0;
     }
 
     .nav-links li {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         margin: 0;
-        padding: 10px;
-        flex-shrink: 0;
+        padding: 6px 4px;
+        flex: 1;
+        border-radius: 8px;
+        gap: 4px;
+        /* Space between icon and text */
+        text-align: center;
+    }
+
+    .nav-links li span:first-child {
+        font-size: 1.4rem;
+        /* Icon size */
+        margin-right: 0;
     }
 
     .nav-links li span:last-child {
-        display: none;
+        display: block !important;
+        /* Force show text on bottom nav */
+        font-size: 0.7rem;
+        font-weight: 500;
+        line-height: 1;
     }
 
-    /* Hide text, keep icon */
+    /* Main Content Adjustments */
     .content {
         padding: 15px;
+        padding-bottom: 90px;
+        /* Add padding to bottom so content isn't covered by nav */
     }
 
     .row {
         grid-template-columns: 1fr;
     }
 
-    /* Re-add footer/darkmode toggle somewhere accessible on mobile? 
-       For now, user requirement was desktop responsiveness mostly. */
+    /* Mobile Header Adjustments */
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    header h1 {
+        font-size: 1.75rem;
+    }
+
+    header .btn-primary {
+        width: 100%;
+    }
 }

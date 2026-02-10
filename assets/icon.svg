@@ -1,6 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" fill="#007bff" rx="64" ry="64"/>
-  <path fill="#ffffff" d="M128 64h256v64H128zM128 224h256v192H128z"/>
-  <path fill="#ffffff" d="M384 192H128c-17.67 0-32 14.33-32 32v128h32v-64h256v64h32V224c0-17.67-14.33-32-32-32z"/>
-  <text x="50%" y="460" font-family="Arial, sans-serif" font-size="60" fill="white" text-anchor="middle">Calc 3D</text>
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="100" fill="url(#grad1)" />
+  <path d="M256 120 L380 340 L132 340 Z" fill="white" opacity="0.9" />
+  <rect x="236" y="340" width="40" height="60" fill="white" opacity="0.9" />
+  <circle cx="256" cy="410" r="15" fill="#2563eb" />
+  <text x="50%" y="300" font-family="Arial, sans-serif" font-size="140" font-weight="bold" fill="#2563eb" text-anchor="middle">3D</text>
 </svg>
