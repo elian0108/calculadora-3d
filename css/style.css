@@ -719,26 +719,26 @@ h3 {
     }
 
     .nav-links li span:first-child {
-        font-size: 1.5rem;
-        margin-right: 0;
-        margin-bottom: 2px;
+        font-size: 1.8rem;
+        /* Larger icons since no text */
+        margin: 0;
         transition: transform 0.2s;
     }
 
     .nav-links li.active span:first-child {
-        transform: translateY(-2px);
+        transform: translateY(-4px);
+        /* Lift icon slightly */
+        color: var(--primary-color);
     }
 
     .nav-links li span:last-child {
         display: none !important;
-        font-size: 0.7rem;
-        font-weight: 600;
-        line-height: 1;
+        /* Always hide text */
     }
 
     .nav-links li.active span:last-child {
-        display: block !important;
-        animation: fadeIn 0.3s ease;
+        display: none !important;
+        /* Ensure hidden on active too */
     }
 
     /* Main Content Adjustments */
